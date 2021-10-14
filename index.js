@@ -1,7 +1,7 @@
 // traverse the tree
-// change the index of the first child & the second (swap)
+// change the index of the first child & the second (flip)
 // traverse further down
-// change the index of the inner child's (swap again)
+// change the index of the inner child's (flip again) & go on & on & on ...
 
 (() => {
   let myObj = {
@@ -30,7 +30,7 @@
   const fn = (currentObj) => {
     for (const key in currentObj) {
       if (key === "children") {
-        let [tempChild0, tempChild1] = currentObj[key];
+        const [tempChild0, tempChild1] = currentObj[key];
         currentObj.children[0] = tempChild1;
         currentObj.children[1] = tempChild0;
 				fn(currentObj.children[0]);
@@ -40,5 +40,5 @@
 		return currentObj;
   };
 
-	console.log(JSON.stringify(fn(myObj)));
+	console.log(JSON.stringify(fn(myObj), null, 2));
 })();
