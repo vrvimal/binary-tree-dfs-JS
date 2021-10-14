@@ -13,7 +13,10 @@
       },
       {
         node: "C",
-        children: [{ node: "F" }, { node: "G" }],
+        children: [
+          { node: "F" },
+          { node: "G", children: [{ node: "H" }, { node: "I" }] },
+        ],
       },
     ],
   };
@@ -33,12 +36,12 @@
         const [tempChild0, tempChild1] = currentObj[key];
         currentObj.children[0] = tempChild1;
         currentObj.children[1] = tempChild0;
-				fn(currentObj.children[0]);
-				fn(currentObj.children[1]);
+        fn(currentObj.children[0]);
+        fn(currentObj.children[1]);
       }
     }
-		return currentObj;
+    return currentObj;
   };
 
-	console.log(JSON.stringify(fn(myObj), null, 2));
+  console.log(JSON.stringify(fn(myObj), null, 2));
 })();
